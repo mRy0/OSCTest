@@ -1,0 +1,40 @@
+﻿@page "/osc"
+@inject HttpClient HttpClient
+
+<PageTitle>OSC</PageTitle>
+
+<h1>OSC</h1>
+
+
+<button class="btn btn-primary" @onclick="@(() => SendMessage("/live/Kontrollfeld/cue/Wabern/activate"))">Wabern</button>
+<button class="btn btn-primary" @onclick="@(() => SendMessage("/live/Kontrollfeld/cue/Lichtwelle_hv/activate"))">Click me</button>
+
+<input type="range" @oninput="@((val) => SendMessage("/output/master", ((double.Parse(val.Value.ToString()) / 100 ))))" min="0" max="100" />
+
+@code {
+    //private System.Net.Sockets.UdpClient _udpClient;
+
+    protected override Task OnInitializedAsync()
+    {
+
+        return base.OnInitializedAsync();
+    }
+
+
+
+
+    private async Task SendMessage(string address, double? value = null)
+    {
+        var msg = new Models.OSCMessage()
+            {
+                Address = address,
+                Value = value
+            };
+
+        await HttpClient.PostAsJsonAsync("/api/osc", msg);
+
+
+    }
+
+
+}
