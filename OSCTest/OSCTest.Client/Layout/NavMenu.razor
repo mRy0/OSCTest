@@ -1,36 +1,36 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">OSCTest</a>
-    </div>
-</div>
+﻿<MudPaper Width="250px" Class="d-inline-flex py-3" Elevation="0">
+    <MudNavMenu Class="mud-width-full" Bordered="true">
+        @if(_pageSettings is not null)
+        {
+            @foreach(var oscControl in _pageSettings.Controls)
+            {
+                <MudNavLink Href="@GetLink(oscControl)" Match="GetLinkMatch(oscControl)">@oscControl.Name</MudNavLink>
+            }            
+        }
+    </MudNavMenu>
+</MudPaper>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+@code {
+    private Models.PageSettings? _pageSettings = null;
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
+    private bool IsFirst(Models.OSCControl cntrl) {
+        return _pageSettings?.Controls.FirstOrDefault() == cntrl;
+    
+   }
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
+    
+    private NavLinkMatch GetLinkMatch(Models.OSCControl cntrl) => 
+    (_pageSettings?.Controls.FirstOrDefault() == cntrl ? NavLinkMatch.All : NavLinkMatch.Prefix);
+    private string GetLink(Models.OSCControl cntrl) => $"/osc/{System.Web.HttpUtility.UrlDecode(cntrl.Name)}";
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="osc">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> OSc
-            </NavLink>
-        </div>
-    </nav>
-</div>
+    protected override async Task OnInitializedAsync()
+    {   
 
+        await base.OnInitializedAsync();
+
+        _pageSettings = await IOscService.GetSettings();
+
+    }
+
+}

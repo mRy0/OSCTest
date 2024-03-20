@@ -10,6 +10,8 @@
     <ProjectReference Include="..\OSCTest.Client\OSCTest.Client.csproj" />
     <PackageReference Include="CoreOSC" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.1" />
+    <PackageReference Include="MudBlazor" Version="6.18.0" />
+    <PackageReference Include="MudBlazor.ThemeManager" Version="1.0.9" />
   </ItemGroup>
 
 </Project>

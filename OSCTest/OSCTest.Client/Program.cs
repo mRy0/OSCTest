@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using MudBlazor.Services;
 
 
 namespace OSCTest.Client
@@ -10,13 +11,16 @@ namespace OSCTest.Client
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
             builder.Services.AddHttpClient();
-
             builder.Services.AddScoped(sp =>
               new HttpClient
               {
                   BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
-            });
+              });
 
+            builder.Services.AddScoped<Services.IOSCSettingService, Services.OSCSettingService>();
+
+            builder.Services.AddMudServices();
+            
             await builder.Build().RunAsync();
         }
     }

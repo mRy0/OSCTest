@@ -1,0 +1,87 @@
+{
+    "Name": "Sams",
+    "Controls": [
+      {
+        "Name": "Allgemein",
+        "Color": "#0099FF",
+        "Server": "127.0.0.1",
+        "ServerPort": 12600,
+        "Elements": [
+          [
+            {
+              "Text": "Master",
+              "Type": "fader",
+              "OSCAddress": "/asdasd/asd",
+              "Size": 12
+
+            }
+          ],
+          [
+            {
+              "Text": "Putzlicht",
+              "Type": "button",
+              "OSCAddress": "/asdasd/asd",
+              "DefaultValue": 1.0
+            }
+          ],
+          [
+            {
+              "Text": "Strobe",
+              "Type": "button",
+              "OSCAddress": "/asdasd/asd",
+              "DefaultValue": 1.0
+            }
+          ]
+        ]
+      },
+      {
+        "Name": "Floor",
+        "Color": "#99FF66",
+        "Server": "127.0.0.1",
+        "ServerPort": 12600,
+        "Elements": [
+          [
+            {
+              "Text": "Master",
+              "Type": "fader",
+              "OSCAddress": "/asdasd/asd",
+              "Size": 12
+            }
+          ],
+          [
+            {
+              "Text": "Waber",
+              "Type": "button",
+              "OSCAddress": "/asdasd/asd",
+              "DefaultValue": 1.0
+            },
+            {
+              "Text": "Strobe",
+              "Type": "button",
+              "OSCAddress": "/asdasd/asd",
+              "DefaultValue": 1.0
+            },
+            {
+              "Text": "Hell",
+              "Type": "button",
+              "OSCAddress": "/asdasd/asd",
+              "DefaultValue": 1.0,
+              "Color": "#FF3020"
+            },
+            {
+              "Text": "Laufen",
+              "Type": "button",
+              "OSCAddress": "/asdasd/asd",
+              "DefaultValue": 1.0
+            }
+          ]
+        ]
+
+      }
+
+
+    ]
+
+
+
+  }

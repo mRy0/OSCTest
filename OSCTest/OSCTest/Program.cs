@@ -1,3 +1,4 @@
+using MudBlazor.Services;
 using OSCTest.Client.Pages;
 using OSCTest.Components;
 
@@ -9,9 +10,9 @@ namespace OSCTest
        {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddMudServices();
             // Add services to the container.
             builder.Services.AddRazorComponents()
-                .AddInteractiveServerComponents()
                 .AddInteractiveWebAssemblyComponents();
 
             builder.Services.AddControllers();
@@ -32,7 +33,6 @@ namespace OSCTest
             app.UseAntiforgery();
 
             app.MapRazorComponents<App>()
-                .AddInteractiveServerRenderMode()
                 .AddInteractiveWebAssemblyRenderMode()
                 .AddAdditionalAssemblies(typeof(Client._Imports).Assembly);
 
