@@ -9,10 +9,25 @@
         "Elements": [
           [
             {
+              "Text": "BPM",
+              "Type": "number",
+              "OSCAddress": "/asdasd/asd",
+              "Size": 4,
+              "Min": 30,
+              "DefaultValue": 135,
+              "Max": 200,
+              "Steps": 1
+
+            },
+            {
               "Text": "Master",
               "Type": "fader",
               "OSCAddress": "/asdasd/asd",
-              "Size": 12
+              "Size": 8,
+              "Min": 0,
+              "DefaultValue":  1,
+              "Max": 1,
+              "Steps": 0.01
 
             }
           ],
@@ -45,7 +60,64 @@
               "Text": "Master",
               "Type": "fader",
               "OSCAddress": "/asdasd/asd",
+              "Size": 12,
+              "Min": 0,
+              "Max": 1,
+              "Steps": 0.01
+            }
+          ],
+          [
+            {
+              "Text": "Waber",
+              "Type": "button",
+              "OSCAddress": "/asdasd/asd",
+              "DefaultValue": 1.0
+            },
+            {
+              "Text": "Strobe",
+              "Type": "button",
+              "OSCAddress": "/asdasd/asd",
+              "DefaultValue": 1.0
+            },
+            {
+              "Text": "Hell",
+              "Type": "button",
+              "OSCAddress": "/asdasd/asd",
+              "DefaultValue": 1.0,
+              "Color": "#FF3020"
+            },
+            {
+              "Text": "Laufen",
+              "Type": "button",
+              "OSCAddress": "/asdasd/asd",
+              "DefaultValue": 1.0
+            }
+          ],
+          [
+            {
+              "Text": "  ",
+              "Type": "text",
               "Size": 12
+            },
+            {
+              "Text": "  ",
+              "Type": "text",
+              "Size": 12
+            },
+            {
+              "Text": "Gang vorne",
+              "Type": "text",
+              "Size": 4,
+              "Color": "white"
+            },
+            {
+              "Text": "Speed",
+              "Type": "fader",
+              "OSCAddress": "/asdasd/asd",
+              "Size": 8,
+              "Min": -8,
+              "Max": 8,
+              "Steps": 1
             }
           ],
           [

@@ -22,22 +22,32 @@
                     string color = "#0099FF";
                     @if (_oSCControlSettings.Color is not null)
                         color = _oSCControlSettings.Color;
-                    else if (oscCol.Color is not null)
+                    if (oscCol.Color is not null)
                         color = oscCol.Color;
 
                     <MudItem xs="@oscCol.Size">
                         @if(oscCol.Type == "fader")
                         {
-                            <MudSlider Min="0" Max="100">@oscCol.Text</MudSlider>
+                            <MudSlider Size="Size.Large" Variant="Variant.Filled" 
+                            Min="oscCol.Min" Max="oscCol.Max" @bind-Value="oscCol.DefaultValue" 
+                            Step="oscCol.Steps" >@oscCol.Text @(oscCol.DefaultValue.HasValue ? (" : " + oscCol.DefaultValue ) : "")</MudSlider>
                         }
                         else if (oscCol.Type == "number")
                         {
+                            <MudNumericField Label="@oscCol.Text" Variant="Variant.Outlined" 
+                            Min="oscCol.Min" Max="oscCol.Max" @bind-Value="oscCol.DefaultValue" Step="oscCol.Steps" />
 
                         }
-                        else {
-                            <MudButton Size="Size.Large" Variant="Variant.Filled" Class="py-8" Style="@("width:100%; height:100%; background-color:" + color)">@oscCol.Text</MudButton>
+                        else if(oscCol.Type == "text")
+                        {
+                            <MudText Align="Align.Center" GutterBottom="false" 
+                            Typo="Typo.h4" Style="@("background-color:" + color)">@oscCol.Text</MudText>
                         }
-
+                        else 
+                        {
+                        <MudButton Size="Size.Large" Variant="Variant.Filled" Class="py-8" 
+                        Style="@("width:100%; height:100%; background-color:" + color)">@oscCol.Text</MudButton>
+                        }
                     </MudItem>
 
                 }
