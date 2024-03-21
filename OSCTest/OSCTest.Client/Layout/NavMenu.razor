@@ -29,7 +29,18 @@
 
         await base.OnInitializedAsync();
 
-        _pageSettings = await IOscService.GetSettings();
+        try
+        {
+            _pageSettings = await IOscService.GetSettings();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add("Config-Fehler: " + ex.Message, Severity.Error, settings =>
+            {
+                settings.VisibleStateDuration = 20000;
+                settings.DuplicatesBehavior = SnackbarDuplicatesBehavior.Prevent;
+            });
+        }
 
     }
 

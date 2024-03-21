@@ -4,6 +4,7 @@ html, body {
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none; /* Standard syntax */
     overscroll-behavior: none;
+    touch-action: manipulation;
 }
 
 a, .btn-link {

@@ -10,15 +10,15 @@ namespace OSCTest.Controllers
         [HttpPost]
         public async Task<IActionResult> SendOSCMessage([FromBody] Client.Models.OSCMessage oSCMessage)
         {
-
-            using var udpClient = new System.Net.Sockets.UdpClient("192.168.178.62", 21600);
+            using var udpClient = new System.Net.Sockets.UdpClient(oSCMessage.Server, oSCMessage.ServerPort);
 
             CoreOSC.OscMessage msg;
 
-            if (oSCMessage.Value is not null)
-                msg = new CoreOSC.OscMessage(new CoreOSC.Address(oSCMessage.Address), new object[] { (float)oSCMessage.Value});
+            if (oSCMessage.Value.HasValue)
+                msg = new CoreOSC.OscMessage(new CoreOSC.Address(oSCMessage.Address), new object[] { oSCMessage.Value.Value });
             else
                 msg = new CoreOSC.OscMessage(new CoreOSC.Address(oSCMessage.Address));
+
 
             await udpClient.SendMessageAsync(msg);
 

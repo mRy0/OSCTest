@@ -4,11 +4,6 @@
 <MudThemeProvider />
 <MudSnackbarProvider />
 
-@if(_pageName is null)
-{
-    <MudText>Wird geladen...</MudText>    
-}
-else {
     <MudLayout>
         <MudAppBar Elevation="1">
             <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
@@ -23,20 +18,31 @@ else {
             @Body
         </MudMainContent>
     </MudLayout>
-}
+
 @code {
     bool _drawerOpen = true;
 
-    private string? _pageName = null;
+    private string _pageName = "";
 
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
 
-        var settings = await IOscService.GetSettings();
+        try
+        {
+            var settings = await IOscService.GetSettings();
 
-        _pageName = settings.Name;
+            _pageName = settings.Name;
+        }
+        catch (Exception ex )
+        {
+            Snackbar.Add("Config-Fehler: " + ex.Message, Severity.Error, settings =>
+            {
+                settings.VisibleStateDuration = 20000;
+                settings.DuplicatesBehavior = SnackbarDuplicatesBehavior.Prevent;
+            });
+        }
     }
 
     void DrawerToggle()

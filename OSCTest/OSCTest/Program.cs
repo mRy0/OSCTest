@@ -13,7 +13,8 @@ namespace OSCTest
             builder.Services.AddMudServices();
             // Add services to the container.
             builder.Services.AddRazorComponents()
-                .AddInteractiveWebAssemblyComponents();
+                .AddInteractiveWebAssemblyComponents()
+                .AddInteractiveServerComponents();
 
             builder.Services.AddControllers();
 
@@ -34,6 +35,7 @@ namespace OSCTest
 
             app.MapRazorComponents<App>()
                 .AddInteractiveWebAssemblyRenderMode()
+                .AddInteractiveServerRenderMode()
                 .AddAdditionalAssemblies(typeof(Client._Imports).Assembly);
 
             app.MapControllers();

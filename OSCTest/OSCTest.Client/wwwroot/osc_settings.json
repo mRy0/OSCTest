@@ -5,7 +5,7 @@
         "Name": "Allgemein",
         "Color": "#0099FF",
         "Server": "127.0.0.1",
-        "ServerPort": 12600,
+        "ServerPort": 21600,
         "Elements": [
           [
             {
@@ -25,7 +25,7 @@
               "OSCAddress": "/asdasd/asd",
               "Size": 8,
               "Min": 0,
-              "DefaultValue":  1,
+              "DefaultValue": 1,
               "Max": 1,
               "Steps": 0.01
 
@@ -53,7 +53,7 @@
         "Name": "Floor",
         "Color": "#99FF66",
         "Server": "127.0.0.1",
-        "ServerPort": 12600,
+        "ServerPort": 21600,
         "Elements": [
           [
             {
@@ -63,7 +63,8 @@
               "Size": 12,
               "Min": 0,
               "Max": 1,
-              "Steps": 0.01
+              "Steps": 0.01,
+              "DefaultValue": 1
             }
           ],
           [
@@ -117,6 +118,7 @@
               "Size": 8,
               "Min": -8,
               "Max": 8,
+              "DefaultValue": 1,
               "Steps": 1
             }
           ],

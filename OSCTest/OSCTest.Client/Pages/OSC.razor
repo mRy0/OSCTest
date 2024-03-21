@@ -28,14 +28,17 @@
                     <MudItem xs="@oscCol.Size">
                         @if(oscCol.Type == "fader")
                         {
-                            <MudSlider Size="Size.Large" Variant="Variant.Filled" 
-                            Min="oscCol.Min" Max="oscCol.Max" @bind-Value="oscCol.DefaultValue" 
-                            Step="oscCol.Steps" >@oscCol.Text @(oscCol.DefaultValue.HasValue ? (" : " + oscCol.DefaultValue ) : "")</MudSlider>
+                            <MudSlider T="float?" Size="Size.Large" Variant="Variant.Filled"
+                                       Min="oscCol.Min" Max="oscCol.Max" Value="oscCol.DefaultValue"
+                                       Step="oscCol.Steps" ValueChanged="(val) => ValueChanged(oscCol,(float?) val.Value)">
+                                       @oscCol.Text @(oscCol.DefaultValue.HasValue ? (" : " + oscCol.DefaultValue) : "")
+                                   </MudSlider>
                         }
                         else if (oscCol.Type == "number")
                         {
-                            <MudNumericField Label="@oscCol.Text" Variant="Variant.Outlined" 
-                            Min="oscCol.Min" Max="oscCol.Max" @bind-Value="oscCol.DefaultValue" Step="oscCol.Steps" />
+                            <MudNumericField T="float?" Label="@oscCol.Text" Variant="Variant.Outlined"
+                                             Min="oscCol.Min" Max="oscCol.Max" Value="oscCol.DefaultValue" Step="oscCol.Steps"
+                                             ValueChanged="(val) => ValueChanged(oscCol, (float?) val.Value)" />
 
                         }
                         else if(oscCol.Type == "text")
@@ -45,8 +48,9 @@
                         }
                         else 
                         {
-                        <MudButton Size="Size.Large" Variant="Variant.Filled" Class="py-8" 
-                        Style="@("width:100%; height:100%; background-color:" + color)">@oscCol.Text</MudButton>
+                            <MudButton Size="Size.Large" Variant="Variant.Filled" Class="py-8" 
+                            Style="@("width:100%; height:100%; background-color:" + color)"
+                                       OnClick="() => ValueChanged(oscCol, oscCol.DefaultValue)">@oscCol.Text</MudButton>
                         }
                     </MudItem>
 
@@ -75,17 +79,29 @@
 
 
 
-
-
-    private async Task SendMessage(string address, double? value = null)
+    private async Task ValueChanged(Models.OSCControlElement oSCControlElement, float? value)
     {
-        var msg = new Models.OSCMessage()
-            {
-                Address = address,
-                Value = value
-            };
+        if (_oSCControlSettings is null)
+            return;
 
-        await HttpClient.PostAsJsonAsync("/api/osc", msg);
+        oSCControlElement.DefaultValue = value;
+
+        var msg = new Models.OSCMessage()
+        {
+                Server =  oSCControlElement.Server ?? _oSCControlSettings.Server,
+                ServerPort = oSCControlElement.ServerPort ?? _oSCControlSettings.ServerPort,
+                Address = oSCControlElement.OSCAddress,
+                Value = value
+
+        };
+
+        var result = await HttpClient.PostAsJsonAsync("/api/osc", msg);
+
+        if (!result.IsSuccessStatusCode)
+            Snackbar.Add("Server-Fehler: " +result.StatusCode, Severity.Error, settings =>
+            {
+                settings.DuplicatesBehavior = SnackbarDuplicatesBehavior.Prevent;
+            });
 
 
     }

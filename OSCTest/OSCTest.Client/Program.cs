@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using MudBlazor;
 using MudBlazor.Services;
 
 
@@ -19,7 +20,13 @@ namespace OSCTest.Client
 
             builder.Services.AddScoped<Services.IOSCSettingService, Services.OSCSettingService>();
 
-            builder.Services.AddMudServices();
+            builder.Services.AddMudServices(config =>
+            {
+                config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopRight;
+                config.SnackbarConfiguration.PreventDuplicates = true;
+                config.SnackbarConfiguration.VisibleStateDuration = 5000;
+                config.SnackbarConfiguration.SnackbarVariant = Variant.Filled;
+            });
             
             await builder.Build().RunAsync();
         }
