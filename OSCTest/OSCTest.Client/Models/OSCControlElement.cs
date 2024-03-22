@@ -15,6 +15,7 @@ namespace OSCTest.Client.Models
         public string OSCAddress { get; set; }
 
         public float? DefaultValue { get; set; }
+        public string? StringValue { get; set; }
         public float Min { get; set; } = 0;
         public float Max { get; set; } = 100;
         public float Steps { get; set; } = 1;

@@ -46,12 +46,18 @@
                             <MudText Align="Align.Center" GutterBottom="false" 
                             Typo="Typo.h4" Style="@("background-color:" + color)">@oscCol.Text</MudText>
                         }
-                        else 
+                        else if(oscCol.DefaultValue is not null)
                         {
                             <MudButton Size="Size.Large" Variant="Variant.Filled" Class="py-8" 
                             Style="@("width:100%; height:100%; background-color:" + color)"
                                        OnClick="() => ValueChanged(oscCol, oscCol.DefaultValue)">@oscCol.Text</MudButton>
                         }
+                        else 
+                            {
+                            <MudButton Size="Size.Large" Variant="Variant.Filled" Class="py-8"
+                                       Style="@("width:100%; height:100%; background-color:" + color)"
+                                       OnClick="() => ValueChanged(oscCol, oscCol.StringValue ?? null)">@oscCol.Text</MudButton>
+                            }
                     </MudItem>
 
                 }
@@ -79,21 +85,31 @@
 
 
 
-    private async Task ValueChanged(Models.OSCControlElement oSCControlElement, float? value)
+    private async Task ValueChanged(Models.OSCControlElement oSCControlElement, object? value)
     {
         if (_oSCControlSettings is null)
             return;
 
-        oSCControlElement.DefaultValue = value;
 
         var msg = new Models.OSCMessage()
-        {
-                Server =  oSCControlElement.Server ?? _oSCControlSettings.Server,
+            {
+                Server = oSCControlElement.Server ?? _oSCControlSettings.Server,
                 ServerPort = oSCControlElement.ServerPort ?? _oSCControlSettings.ServerPort,
                 Address = oSCControlElement.OSCAddress,
-                Value = value
+            };
 
-        };
+        if(value is float)
+        {
+            oSCControlElement.DefaultValue = (float)value;
+            msg.Value = value;
+            msg.ValueType = typeof(float).Name;
+        }
+        else if (value is string)
+        {
+            msg.Value = value;
+            msg.ValueType = typeof(string).Name;
+        }
+
 
         var result = await HttpClient.PostAsJsonAsync("/api/osc", msg);
 
@@ -106,5 +122,6 @@
 
     }
 
+    
 
 }

@@ -19,4 +19,13 @@
     <PackageReference Include="MudBlazor.ThemeManager" Version="1.0.9" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="install_osx_service.sh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="localhost.osc-service.plist">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

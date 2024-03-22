@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor;
 using MudBlazor.Services;
+using Newtonsoft.Json;
 
 
 namespace OSCTest.Client
@@ -9,6 +10,7 @@ namespace OSCTest.Client
     {
         static async Task Main(string[] args)
         {
+
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
 
             builder.Services.AddHttpClient();

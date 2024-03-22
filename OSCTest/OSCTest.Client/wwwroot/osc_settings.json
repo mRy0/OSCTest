@@ -4,14 +4,14 @@
       {
         "Name": "Allgemein",
         "Color": "#0099FF",
-        "Server": "127.0.0.1",
+        "Server": "192.168.178.62",
         "ServerPort": 21600,
         "Elements": [
           [
             {
               "Text": "BPM",
               "Type": "number",
-              "OSCAddress": "/asdasd/asd",
+              "OSCAddress": "/beat/tempo",
               "Size": 4,
               "Min": 30,
               "DefaultValue": 135,
@@ -22,7 +22,7 @@
             {
               "Text": "Master",
               "Type": "fader",
-              "OSCAddress": "/asdasd/asd",
+              "OSCAddress": "/output/master",
               "Size": 8,
               "Min": 0,
               "DefaultValue": 1,
@@ -52,14 +52,14 @@
       {
         "Name": "Floor",
         "Color": "#99FF66",
-        "Server": "127.0.0.1",
+        "Server": "192.168.178.62",
         "ServerPort": 21600,
         "Elements": [
           [
             {
               "Text": "Master",
               "Type": "fader",
-              "OSCAddress": "/asdasd/asd",
+              "OSCAddress": "/output/master",
               "Size": 12,
               "Min": 0,
               "Max": 1,
@@ -71,26 +71,25 @@
             {
               "Text": "Waber",
               "Type": "button",
-              "OSCAddress": "/asdasd/asd",
-              "DefaultValue": 1.0
+              "OSCAddress": "/live/Kontrollfeld/cue/Rnd/activate"
             },
             {
               "Text": "Strobe",
               "Type": "button",
-              "OSCAddress": "/asdasd/asd",
+              "OSCAddress": "/live/Kontrollfeld/cue/Cancen/activate",
               "DefaultValue": 1.0
             },
             {
               "Text": "Hell",
               "Type": "button",
-              "OSCAddress": "/asdasd/asd",
+              "OSCAddress": "/live/Kontrollfeld/cue/HnV/activate",
               "DefaultValue": 1.0,
               "Color": "#FF3020"
             },
             {
               "Text": "Laufen",
               "Type": "button",
-              "OSCAddress": "/asdasd/asd",
+              "OSCAddress": "/live/Kontrollfeld/cue/Runde/activate",
               "DefaultValue": 1.0
             }
           ],
@@ -112,14 +111,67 @@
               "Color": "white"
             },
             {
-              "Text": "Speed",
-              "Type": "fader",
-              "OSCAddress": "/asdasd/asd",
-              "Size": 8,
-              "Min": -8,
-              "Max": 8,
-              "DefaultValue": 1,
-              "Steps": 1
+              "Text": "/8",
+              "Type": "button",
+              "OSCAddress": "/live/Kontrollfeld/frame/Bars_Dimmer/beatMultiplier",
+              "Size": 1,
+              "StringValue": "/8",
+              "Color": "lightgray"
+            },
+            {
+              "Text": "/6",
+              "Type": "button",
+              "OSCAddress": "/live/Kontrollfeld/frame/Bars_Dimmer/beatMultiplier",
+              "Size": 1,
+              "StringValue": "/6",
+              "Color": "lightgray"
+            },
+            {
+              "Text": "/4",
+              "Type": "button",
+              "OSCAddress": "/live/Kontrollfeld/frame/Bars_Dimmer/beatMultiplier",
+              "Size": 1,
+              "StringValue": "/4",
+              "Color": "lightgray"
+            },
+            {
+              "Text": "/3",
+              "Type": "button",
+              "OSCAddress": "/live/Kontrollfeld/frame/Bars_Dimmer/beatMultiplier",
+              "Size": 1,
+              "StringValue": "/3",
+              "Color": "lightgray"
+            },
+            {
+              "Text": "/2",
+              "Type": "button",
+              "OSCAddress": "/live/Kontrollfeld/frame/Bars_Dimmer/beatMultiplier",
+              "Size": 1,
+              "StringValue": "/2",
+              "Color": "lightgray"
+            },
+            {
+              "Text": "x1",
+              "Type": "button",
+              "OSCAddress": "/live/Kontrollfeld/frame/Bars_Dimmer/beatMultiplier",
+              "Size": 1,
+              "StringValue": "x1"
+            },
+            {
+              "Text": "x2",
+              "Type": "button",
+              "OSCAddress": "/live/Kontrollfeld/frame/Bars_Dimmer/beatMultiplier",
+              "Size": 1,
+              "StringValue": "x2",
+              "Color": "lightgray"
+            },
+            {
+              "Text": "x3",
+              "Type": "button",
+              "OSCAddress": "/live/Kontrollfeld/frame/Bars_Dimmer/beatMultiplier",
+              "Size": 1,
+              "StringValue": "x3",
+              "Color": "lightgray"
             }
           ],
           [
